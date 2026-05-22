@@ -40,10 +40,6 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run regression tests
-        run: behave --no-capture --tags=regression -f html -o reports/report.html
+        run: behave --no-capture --tags=regression 
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: behave-report
-          path: reports/report.html
+        
