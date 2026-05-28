@@ -2,19 +2,21 @@ name: Booking bdd tests
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -29,10 +31,10 @@ jobs:
     needs: smoke
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -40,6 +42,21 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run regression tests
-        run: behave --no-capture --tags=regression 
+        run: behave --no-capture --tags=regression
 
-        
+      - name: Run regression tests with Allure
+        run: |
+          behave --no-capture --tags=regression \
+          -f allure_behave.formatter:AllureFormatter \
+          -o allure-results
+
+      - name: Generate Allure Report
+        if: always()
+        run: allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report
