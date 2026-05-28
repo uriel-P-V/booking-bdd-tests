@@ -41,8 +41,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run regression tests
-        run: behave --no-capture --tags=regression
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline
 
       - name: Run regression tests with Allure
         run: |
