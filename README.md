@@ -28,7 +28,21 @@ booking-bdd-tests/
 ```
  
 ---
- 
+
+## Reports
+
+  After each CI run, an Allure HTML report is generated and available
+  as a downloadable artifact in the GitHub Actions summary page.
+
+  To generate locally:
+  ```bash
+  behave --no-capture --tags=regression \
+    -f allure_behave.formatter:AllureFormatter \
+    -o allure-results
+  allure generate allure-results --clean -o allure-report
+  allure open allure-report
+  ```
+
 ## Features
  
 - **Multi-feature BDD** — three independent Gherkin feature files by domain
