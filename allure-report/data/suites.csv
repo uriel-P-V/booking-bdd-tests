@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1150","Create a reservation with valid data","","2026-05-27","passed","2026-05-27","","","",""
+"","7","Validate that the response contains the correct fields","","2026-05-27","passed","2026-05-27","","","",""
+"","4","Get a reservation by valid ID","","2026-05-27","passed","2026-05-27","","","",""
+"","2142","Cancel an existing reservation","","2026-05-27","passed","2026-05-27","","","",""
+"","1740","List all available reservations","","2026-05-27","passed","2026-05-27","","","",""
+"","3","Get a reservation by invalid ID","","2026-05-27","passed","2026-05-27","","","",""
